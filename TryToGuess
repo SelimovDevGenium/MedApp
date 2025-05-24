@@ -1,0 +1,51 @@
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QLabel, QPushButton, QHBoxLayout
+
+app = QApplication([])
+my_win = QWidget()
+my_win.setWindowTitle('Игра Кубики')
+my_win.move(500, 180)
+my_win.resize(400, 400)
+my_win.show()
+
+line = QVBoxLayout()
+row1 = QHBoxLayout()
+row2 = QHBoxLayout()
+row3 = QHBoxLayout()
+
+button1 = QPushButton('1')
+button2 = QPushButton('2')
+button3 = QPushButton('3')
+button4 = QPushButton('4')
+button5 = QPushButton('5')
+
+row1.addWidget(button1, alignment= Qt.AlignCenter)
+row1.addWidget(button2, alignment= Qt.AlignCenter)
+
+row2.addWidget(button3, alignment= Qt.AlignCenter)
+
+row3.addWidget(button4, alignment= Qt.AlignCenter)
+row3.addWidget(button5, alignment= Qt.AlignCenter)
+
+
+line.addLayout(row1)
+line.addLayout(row2)
+line.addLayout(row3)
+
+my_win.setLayout(line)
+
+def show_win():
+    fun_title = QLabel('Ты Угадал!')
+    line.addWidget(fun_title, alignment= Qt.AlignCenter)
+
+def show_lose():
+    fun_title = QLabel('Не Угадал!')
+    line.addWidget(fun_title, alignment= Qt.AlignCenter)
+
+button3.clicked.connect(show_win)
+button1.clicked.connect(show_lose)
+button2.clicked.connect(show_lose)
+button4.clicked.connect(show_lose)
+button5.clicked.connect(show_lose)
+
+app.exec_()
